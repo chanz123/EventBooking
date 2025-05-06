@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- File: Vendor/EventBooking/etc/di.xml -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Repositories -->
+    <preference for="Vendor\EventBooking\Api\EventRepositoryInterface"
+                type="Vendor\EventBooking\Model\EventRepository" />
+
+    <preference for="Vendor\EventBooking\Api\AttendeeRepositoryInterface"
+                type="Vendor\EventBooking\Model\AttendeeRepository" />
+
+    <preference for="Vendor\EventBooking\Api\BookingServiceInterface"
+                type="Vendor\EventBooking\Model\BookingService" />
+
+    <!-- Factories -->
+    <type name="Vendor\EventBooking\Model\EventRepository">
+        <arguments>
+            <argument name="eventFactory" xsi:type="object">Vendor\EventBooking\Model\EventFactory</argument>
+            <argument name="eventResource" xsi:type="object">Vendor\EventBooking\Model\ResourceModel\Event</argument>
+        </arguments>
+    </type>
+
+    <type name="Vendor\EventBooking\Model\AttendeeRepository">
+        <arguments>
+            <argument name="attendeeFactory" xsi:type="object">Vendor\EventBooking\Model\AttendeeFactory</argument>
+            <argument name="attendeeResource" xsi:type="object">Vendor\EventBooking\Model\ResourceModel\Attendee</argument>
+        </arguments>
+    </type>
+
+    <type name="Vendor\EventBooking\Model\BookingService">
+        <arguments>
+            <argument name="eventResource" xsi:type="object">Vendor\EventBooking\Model\ResourceModel\Event</argument>
+            <argument name="bookingResource" xsi:type="object">Vendor\EventBooking\Model\ResourceModel\Booking</argument>
+            <argument name="attendeeResource" xsi:type="object">Vendor\EventBooking\Model\ResourceModel\Attendee</argument>
+            <argument name="eventFactory" xsi:type="object">Vendor\EventBooking\Model\EventFactory</argument>
+            <argument name="attendeeFactory" xsi:type="object">Vendor\EventBooking\Model\AttendeeFactory</argument>
+            <argument name="bookingFactory" xsi:type="object">Vendor\EventBooking\Model\BookingFactory</argument>
+            <argument name="transactionFactory" xsi:type="object">Magento\Framework\DB\TransactionFactory</argument>
+        </arguments>
+    </type>
+
+</config>

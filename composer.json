@@ -1,0 +1,14 @@
+{
+    "name": "vendor/event-booking",
+    "description": "Magento 2 Event Booking Module",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Vendor\\EventBooking\\": ""
+        }
+    }
+}

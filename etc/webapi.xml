@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Events -->
+    <route url="/V1/events" method="GET">
+        <service class="Vendor\EventBooking\Api\EventRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/events/:id" method="GET">
+        <service class="Vendor\EventBooking\Api\EventRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/events" method="POST">
+        <service class="Vendor\EventBooking\Api\EventRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Customer::admin"/> <!-- Requires auth -->
+        </resources>
+    </route>
+
+    <route url="/V1/events/:id" method="DELETE">
+        <service class="Vendor\EventBooking\Api\EventRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="Magento_Customer::admin"/>
+        </resources>
+    </route>
+
+    <!-- Attendees -->
+    <route url="/V1/attendees" method="POST">
+        <service class="Vendor\EventBooking\Api\AttendeeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/attendees/:id" method="GET">
+        <service class="Vendor\EventBooking\Api\AttendeeRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Booking -->
+    <route url="/V1/bookings" method="POST">
+        <service class="Vendor\EventBooking\Api\BookingServiceInterface" method="bookEvent"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+</routes>
